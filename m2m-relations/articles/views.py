@@ -13,7 +13,7 @@ def articles_list(request):
         print(article.scopes)
         print("===")
         for scope in article.scopes.all():
-            print(scope.tag)
+            print(scope)
             print("+++")
 
 
