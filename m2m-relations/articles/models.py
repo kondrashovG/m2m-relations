@@ -41,4 +41,3 @@ class Scope(models.Model):
         verbose_name = 'Связь'
         verbose_name_plural = 'Связи'
         ordering = ['-is_main', 'tag__name']
-
