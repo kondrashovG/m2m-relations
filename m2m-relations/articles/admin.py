@@ -28,10 +28,11 @@ class ScopeInline(admin.TabularInline):
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    model = Scope
+    # model = Scope
     inlines = [ScopeInline]
 
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
-    model = Scope
+    pass
+    # model = Scope

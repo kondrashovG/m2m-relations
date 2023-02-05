@@ -3,6 +3,7 @@ from django.db import models
 
 class Tag(models.Model):
     name = models.CharField(max_length=128, verbose_name='Тэг')
+
     # publish = models.ManyToManyField(Article, through='Scope')
     class Meta:
         verbose_name = 'Раздел'
@@ -17,7 +18,7 @@ class Article(models.Model):
     text = models.TextField(verbose_name='Текст')
     published_at = models.DateTimeField(verbose_name='Дата публикации')
     image = models.ImageField(null=True, blank=True, verbose_name='Изображение')
-    scopes = models.ManyToManyField(Tag, through='Scope')
+    scope = models.ManyToManyField(Tag, through='Scope')
 
     class Meta:
         verbose_name = 'Статья'
@@ -29,7 +30,7 @@ class Article(models.Model):
 
 
 class Scope(models.Model):
-    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name='scopes')
     tag = models.ForeignKey(Tag, on_delete=models.CASCADE)
     is_main = models.BooleanField(default=False)
 
@@ -39,3 +40,5 @@ class Scope(models.Model):
     class Meta:
         verbose_name = 'Связь'
         verbose_name_plural = 'Связи'
+        ordering = ['-is_main', 'tag__name']
+

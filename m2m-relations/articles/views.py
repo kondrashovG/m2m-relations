@@ -5,16 +5,16 @@ from articles.models import Article
 
 def articles_list(request):
     template = 'articles/news.html'
-    context = {"object_list": Article.objects.all()}
+    context = {"object_list": Article.objects.all().prefetch_related('scope')}
 
-    for article in context["object_list"]:
-        print(vars(article))
-        print("---")
-        print(article.scopes)
-        print("===")
-        for scope in article.scopes.all():
-            print(scope)
-            print("+++")
+    # for article in context["object_list"]:
+    #     print(vars(article))
+    #     print("---")
+    #     print(article.scopes)
+    #     print("===")
+    #     for scope in article.scopes.all():
+    #         print(vars(scope))
+    #         print("+++")
 
 
 
